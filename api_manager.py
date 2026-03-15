@@ -2,8 +2,9 @@
 # Aca manejo todo lo que se comunica con la API, y de aca salen funciones corte getmatches()
 import time
 import requests
+import os
 
-API_KEY = "cd75b16df7df4c7ab3050941980cb8b0"
+API_KEY = os.environ["FOOTBALL_API_KEY"]
 headers = { "X-Auth-Token": API_KEY }
 params = {
     "status": "SCHEDULED",
@@ -18,5 +19,3 @@ def getMatches(): # All matches envolving the few teams
         response = requests.get(url, headers = headers, params = params)
         data = response.json()
         print(f"{data["matches"][0]["homeTeam"]["name"]} vs {data["matches"][0]["awayTeam"]["name"]}")
-
-getMatches()
