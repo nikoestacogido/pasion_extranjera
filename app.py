@@ -1,13 +1,20 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi import Request
+# API KEY 507e730cb209ad0f97228d13ee84d748
+# Aca manejo todo lo que se comunica con la API, y de aca salen funciones corte getmatches()
+import time
+import requests
 
-app = FastAPI()
+API_KEY = "cd75b16df7df4c7ab3050941980cb8b0"
+headers = { "X-Auth-Token": API_KEY }
+params = {
+    "status": "SCHEDULED",
+    "limit": 1
+}
 
-templates = Jinja2Templates(directory = "templates")
-
-@app.get("/", response_class = HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+def getMatches(): # All matches envolving the few teams
+    for team in [559, 86, 558]: #Sacarlo de un .CSV
+        time.sleep(10)
+        id = team
+        url = f"https://api.football-data.org/v4/teams/{id}/matches"
+        response = requests.get(url, headers = headers, params = params)
+        data = response.json()
+        print(f"{data["matches"][0]["homeTeam"]["name"]} vs {data["matches"][0]["awayTeam"]["name"]}")
