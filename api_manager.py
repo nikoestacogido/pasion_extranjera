@@ -3,6 +3,7 @@
 import time
 import requests
 import os
+from database_func import getTeamsFeature
 
 API_KEY = os.environ["FOOTBALL_API_KEY"]
 headers = { "X-Auth-Token": API_KEY }
@@ -12,7 +13,8 @@ params = {
 }
 
 def getMatches(): # All matches envolving the few teams
-    for team in [559, 86, 558]: #Sacarlo de un .CSV
+    ids = getTeamsFeature("id")
+    for team in ids:
         time.sleep(10)
         id = team
         url = f"https://api.football-data.org/v4/teams/{id}/matches"
