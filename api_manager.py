@@ -21,3 +21,5 @@ def getMatches(): # All matches envolving the few teams
         response = requests.get(url, headers = headers, params = params)
         data = response.json()
         print(f"{data["matches"][0]["homeTeam"]["name"]} vs {data["matches"][0]["awayTeam"]["name"]}")
+
+print(getMatches())
