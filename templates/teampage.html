@@ -1,0 +1,11 @@
+<h1>{{ team.name }}</h1>
+
+<h2>Alto equipo gato...</h2>
+<ul>
+{% for player in team.players %}
+    <li>{{ player }}</li>
+{% endfor %}
+</ul>
+
+<h2>Proximo partido:</h2>
+<p>{{ nextMatch.home }} vs {{ nextMatch.away }}</p>
