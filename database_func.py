@@ -36,3 +36,4 @@ def writeMatches(matches):
         conn.commit()
 
 def writeSquad(squad : list, teamName : str):
+    print(squad)
