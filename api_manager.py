@@ -2,6 +2,7 @@
 # Aca manejo todo lo que se comunica con la API, y de aca salen funciones corte getmatches()
 import time
 import requests
+import os
 from database_func import getTeamsFeature, getTeamFeature
 
 API_KEY = os.environ["FOOTBALL_API_KEY"]
