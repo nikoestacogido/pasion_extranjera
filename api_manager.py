@@ -1,7 +1,6 @@
 # API KEY 507e730cb209ad0f97228d13ee84d748
 # Aca manejo todo lo que se comunica con la API, y de aca salen funciones corte getmatches()
 import time
-import os
 import requests
 from database_func import getTeamsFeature, getTeamFeature
 
@@ -30,3 +29,21 @@ def getMatches(ids): # All matches envolving the few teams
         match.append(home)
         matches.append(match)
     return matches
+
+def getIds():
+    url = "https://api.football-data.org/v4/competitions/PL/teams"
+    response = requests.get(url, headers = headers, params = params)
+    data = response.json()
+    for team in data["teams"]:
+        print(team["name"])
+        print(team["id"])
+
+def getPlayers(teamId):
+    url = f"https://api.football-data.org/v4/teams/{teamId}"
+    response = requests.get(url, headers = headers, params = params)
+    data = response.json()
+    squad = []
+    squad.append(data["coach"]["name"])
+    for set in data["squad"]:
+        squad.append(set["name"])
+    return squad
