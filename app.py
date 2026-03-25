@@ -42,7 +42,7 @@ def team_page(request: Request, team_id: int):
     team_data.name = team_name
     team_data.players = getPlayers(team_id)
 
-    return templates.TemplateResponse("team.html", {
+    return templates.TemplateResponse("teampage.html", {
         "request": request,
         "team": team_data,
         "nextMatch": next_match
