@@ -5,10 +5,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from database_func import getTeamFeature
 from api_manager import getPlayers
+import os
 
 app = FastAPI()
 
-templates = Jinja2Templates(directory = "templates")
+templates = Jinja2Templates( directory = os.path.join(os.path.dirname(__file__), "templates"))
 
 @app.get("/", response_class = HTMLResponse)
 def home(request: Request):
